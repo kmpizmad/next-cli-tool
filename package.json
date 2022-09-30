@@ -1,0 +1,52 @@
+{
+  "private": false,
+  "name": "next-cli-tool",
+  "version": "0.1.0",
+  "description": "CLI tool for generating pre-built (or custom) pages, components, higher-order components, hooks or providers in your Next.js app",
+  "homepage": "https://github.com/kmpizmad/next-cli-tool#README.md",
+  "keywords": [
+    "cli",
+    "next",
+    "next.js",
+    "typescript"
+  ],
+  "repository": {
+    "url": "https://github.com/kmpizmad/next-cli-tool.git",
+    "type": "git"
+  },
+  "contributors": [
+    "kmpizmad"
+  ],
+  "author": {
+    "email": "nagy.viktor392@gmail.com",
+    "name": "Nagy Viktor"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": "bin/index.js",
+  "engines": {
+    "npm": "use Yarn!",
+    "node": ">= 16"
+  },
+  "main": "bin/index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.23",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-etc": "^2.0.2",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
+}
