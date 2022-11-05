@@ -3,12 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.nextConfigPath = void 0;
-var path_1 = require("path");
 var inquirer_1 = __importDefault(require("inquirer"));
 var createConfig_1 = __importDefault(require("./createConfig"));
 var prompt = function () {
-    inquirer_1.default
+    return inquirer_1.default
         .prompt([
         {
             type: 'checkbox',
@@ -68,8 +66,8 @@ var prompt = function () {
         },
     ])
         .then(function (answers) {
-        (0, createConfig_1.default)(exports.nextConfigPath, answers);
+        (0, createConfig_1.default)(answers);
+        return answers;
     });
 };
 exports.default = prompt;
-exports.nextConfigPath = (0, path_1.resolve)(process.cwd(), 'next.json');

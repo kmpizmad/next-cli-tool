@@ -25,10 +25,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
-var prompt_1 = __importStar(require("./cli/prompt"));
-(0, fs_1.readFile)(prompt_1.nextConfigPath, { encoding: 'utf-8' }, function (err, data) {
-    if (err)
-        (0, prompt_1.default)();
-    else
-        console.log(JSON.parse(data));
+var path_1 = require("path");
+var commander_1 = require("commander");
+var cli_1 = __importStar(require("./cli"));
+(0, fs_1.readFile)(cli_1.nextConfigPath, { encoding: 'utf-8' }, function (err, data) {
+    var config = err ? (0, cli_1.default)() : JSON.parse(data);
+    var pkg = (0, fs_1.readFileSync)((0, path_1.resolve)(process.cwd(), 'package.json'), { encoding: 'utf-8' });
+    var _a = JSON.parse(pkg), name = _a.name, description = _a.description, version = _a.version;
+    console.log(config);
+    var program = new commander_1.Command(name);
+    program.description(description);
+    program.version(version, '-v, --version');
+    program.parse();
 });

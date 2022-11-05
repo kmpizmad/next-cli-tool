@@ -1,8 +1,8 @@
 import inquier from 'inquirer';
 import createConfig, { IAnswers } from './createConfig';
 
-const prompt = (): void => {
-  inquier
+const prompt = (): Promise<IAnswers> => {
+  return inquier
     .prompt<IAnswers>([
       {
         type: 'checkbox',
@@ -63,6 +63,7 @@ const prompt = (): void => {
     ])
     .then(answers => {
       createConfig(answers);
+      return answers;
     });
 };
 
