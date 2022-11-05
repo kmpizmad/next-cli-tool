@@ -1,6 +1,8 @@
 {
   "private": false,
+  "deprecated": false,
   "name": "next-cli-tool",
+  "type": "commonjs",
   "version": "0.1.0",
   "description": "CLI tool for generating pre-built (or custom) pages, components, higher-order components, hooks or providers in your Next.js app",
   "homepage": "https://github.com/kmpizmad/next-cli-tool#README.md",
@@ -25,12 +27,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "bin/index.js",
   "bin": "bin/index.js",
   "engines": {
     "npm": "use Yarn!",
     "node": ">= 16"
   },
-  "main": "bin/index.js",
   "scripts": {
     "build": "tsc -p .",
     "lint": "eslint .",
@@ -38,6 +40,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.2",
     "@types/node": "^18.7.23",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
@@ -48,5 +51,9 @@
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "commander": "^9.4.1",
+    "inquirer": "^8.0.0"
   }
 }
