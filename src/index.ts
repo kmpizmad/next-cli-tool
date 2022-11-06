@@ -2,20 +2,28 @@
 
 import { readFile, readFileSync } from 'fs';
 import { resolve } from 'path';
-import { Command } from 'commander';
-import prompt, { IAnswers, nextConfigPath } from './cli';
+import prompt, { IAnswers, nextConfigPath } from './config';
+import createProgram, { generateComponent, generateHoc, generateHook, generatePage } from './commands';
 
 readFile(nextConfigPath, { encoding: 'utf-8' }, (err, data) => {
-  const config: IAnswers | Promise<IAnswers> = err ? prompt() : JSON.parse(data);
+  let config: IAnswers | null = null;
 
-  const pkg = readFileSync(resolve(process.cwd(), 'package.json'), { encoding: 'utf-8' });
-  const { name, description, version } = JSON.parse(pkg);
-  console.log(config);
+  if (err) prompt(answers => console.log(answers));
+  else config = JSON.parse(data);
+  console.log('Config object:', config);
 
-  const program = new Command(name);
+  const pkgPath: string = resolve(process.cwd(), 'package.json');
+  const pkg: string = readFileSync(pkgPath, { encoding: 'utf-8' });
+  const program = createProgram(JSON.parse(pkg));
 
-  program.description(description);
-  program.version(version, '-v, --version');
+  const generatorCommand = program.command('generate <type>').alias('g');
+
+  generateComponent(generatorCommand);
+  generatePage(generatorCommand);
+  generateHook(generatorCommand);
+  generateHoc(generatorCommand);
+
+  generatorCommand.description('Defines what type of component to generate');
 
   program.parse();
 });
