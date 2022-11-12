@@ -19,13 +19,6 @@ const prompt = (callback?: (answers: IAnswers) => void): void => {
       },
       {
         type: 'confirm',
-        message: 'Do you want to generate your pages as modules?',
-        name: 'shouldGeneratePagesAsModules',
-        default: false,
-        when: answers => answers.modules.includes('pages'),
-      },
-      {
-        type: 'confirm',
         message: 'Do you prefer arrow functions?',
         name: 'isUsingArrowFunctions',
         default: false,

@@ -25,24 +25,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
-var path_1 = require("path");
+var commands_1 = require("./commands");
 var config_1 = __importStar(require("./config"));
-var commands_1 = __importStar(require("./commands"));
 (0, fs_1.readFile)(config_1.nextConfigPath, { encoding: 'utf-8' }, function (err, data) {
-    var config = null;
     if (err)
-        (0, config_1.default)(function (answers) { return console.log(answers); });
+        (0, config_1.default)(function (answers) { return (0, commands_1.run)(answers); });
     else
-        config = JSON.parse(data);
-    console.log('Config object:', config);
-    var pkgPath = (0, path_1.resolve)(process.cwd(), 'package.json');
-    var pkg = (0, fs_1.readFileSync)(pkgPath, { encoding: 'utf-8' });
-    var program = (0, commands_1.default)(JSON.parse(pkg));
-    var generatorCommand = program.command('generate <type>').alias('g');
-    (0, commands_1.generateComponent)(generatorCommand);
-    (0, commands_1.generatePage)(generatorCommand);
-    (0, commands_1.generateHook)(generatorCommand);
-    (0, commands_1.generateHoc)(generatorCommand);
-    generatorCommand.description('Defines what type of component to generate');
-    program.parse();
+        (0, commands_1.run)(JSON.parse(data));
 });

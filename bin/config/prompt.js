@@ -23,13 +23,6 @@ var prompt = function (callback) {
         },
         {
             type: 'confirm',
-            message: 'Do you want to generate your pages as modules?',
-            name: 'shouldGeneratePagesAsModules',
-            default: false,
-            when: function (answers) { return answers.modules.includes('pages'); },
-        },
-        {
-            type: 'confirm',
             message: 'Do you prefer arrow functions?',
             name: 'isUsingArrowFunctions',
             default: false,
