@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var os_1 = require("os");
+var createTemplate = function (name, _a) {
+    var cssPreprocessor = _a.cssPreprocessor, testingLib = _a.testingLib, isUsingInterfaces = _a.isUsingInterfaces, isUsingArrowFunctions = _a.isUsingArrowFunctions, isUsingNamedExports = _a.isUsingNamedExports;
+    var stylesheetDef = cssPreprocessor !== 'none' ? "import './".concat(name, ".").concat(cssPreprocessor, "';").concat(os_1.EOL).concat(os_1.EOL) : '';
+    var propType = isUsingInterfaces ? 'interface Props {}' : 'type Props = {}';
+    var propDef = "".concat(propType).concat(os_1.EOL).concat(os_1.EOL);
+    var fnExport = isUsingNamedExports ? 'export ' : '';
+    var fnName = isUsingArrowFunctions ? "const ".concat(name, ": React.FC<Props> = props =>") : "function ".concat(name, "(props: Props)");
+    var fnDef = "".concat(fnExport).concat(fnName, " {").concat(os_1.EOL);
+    var fnEndDef = "};".concat(os_1.EOL).concat(os_1.EOL);
+    var className = cssPreprocessor !== 'none' ? " className=\"".concat(name, "\"") : '';
+    var testid = testingLib !== 'none' ? " data-testid=\"".concat(name, "\"") : '';
+    var returnStatement = "  return <div".concat(className).concat(testid, ">").concat(name, " works!</div>;").concat(os_1.EOL);
+    var typeExport = "export type ".concat(name, "Props = Readonly<Props>;").concat(os_1.EOL);
+    var defaultExport = isUsingNamedExports ? '' : "export default ".concat(name).concat(os_1.EOL);
+    return [stylesheetDef, propDef, fnDef, returnStatement, fnEndDef, typeExport, defaultExport].join('');
+};
+exports.default = createTemplate;

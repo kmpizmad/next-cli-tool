@@ -30,13 +30,13 @@ var run = function (config) {
     var program = (0, createProgram_1.default)(JSON.parse(pkg));
     var generatorCommand = program.command('generate <type>').alias('g');
     if (config.modules.includes('components'))
-        (0, generator_1.generateComponent)(generatorCommand);
+        (0, generator_1.generateComponent)(config, generatorCommand);
     if (config.modules.includes('pages'))
-        (0, generator_1.generatePage)(generatorCommand);
+        (0, generator_1.generatePage)(config, generatorCommand);
     if (config.modules.includes('hooks'))
-        (0, generator_1.generateHook)(generatorCommand);
+        (0, generator_1.generateHook)(config, generatorCommand);
     if (config.modules.includes('higher-order components'))
-        (0, generator_1.generateHoc)(generatorCommand);
+        (0, generator_1.generateHoc)(config, generatorCommand);
     generatorCommand.description('Defines what type of component to generate');
     program.parse();
 };
