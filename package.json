@@ -34,10 +34,11 @@
     "node": ">= 16"
   },
   "scripts": {
-    "build": "rimraf ./bin && tsc -p .",
+    "build": "rimraf ./bin && tsc -p . && chmod +x ~/.config/yarn/link/next-cli-tool/bin/index.js",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "next-cli-tool"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.2",

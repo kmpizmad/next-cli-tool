@@ -1,9 +1,10 @@
 import inquier from 'inquirer';
-import createConfig, { IAnswers } from './createConfig';
+import { Answers } from '../interfaces/Answers';
+import createConfig from './createConfig';
 
-const prompt = (callback?: (answers: IAnswers) => void): void => {
+const prompt = (callback?: (answers: Answers) => void): void => {
   inquier
-    .prompt<IAnswers>([
+    .prompt<Answers>([
       {
         type: 'checkbox',
         message: 'What modules do you want to generate?',
